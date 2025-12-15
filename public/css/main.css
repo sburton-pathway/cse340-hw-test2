@@ -1,30 +1,148 @@
-html, body {
-    background-color: lightblue;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 20px;
+/* Reset-ish */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
 }
 
 body {
-    nav {
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: #111827; /* slate-900 */
+    background: #f3f4f6; /* slate-100 */
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
 
-        li {
-            display: inline;
-            margin-right: 15px;
-        }
+/* Top Navigation */
+nav {
+    background: #0f172a; /* slate-900 */
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.4);
+}
 
-        a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
+nav ul {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0.75rem 1.5rem;
+    max-width: 960px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+}
 
-            &:hover {
-                color: #0066cc;
-            }
-        }
+nav li {
+    margin: 0;
+}
+
+nav a {
+    display: inline-block;
+    padding: 0.35rem 0.9rem;
+    border-radius: 999px;
+    text-decoration: none;
+    color: #e5e7eb; /* slate-200 */
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: background-color 0.15s ease, color 0.15s ease, transform 0.1s ease;
+}
+
+nav a:hover,
+nav a:focus-visible {
+    background-color: rgba(148, 163, 184, 0.2); /* slate-400 w/ alpha */
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+/* Main content layout */
+main {
+    max-width: 960px;
+    width: 100%;
+    margin: 2.5rem auto 2rem auto;
+    padding: 0 1.5rem 2.5rem;
+}
+
+/* Typography */
+h1 {
+    font-size: clamp(1.8rem, 2.4vw + 1.2rem, 2.4rem);
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.02em;
+    color: #0f172a;
+}
+
+p {
+    margin: 0.75rem 0 1.25rem;
+    font-size: 0.98rem;
+    color: #4b5563; /* slate-600 */
+}
+
+/* Partners list (the <ul> in main) */
+main > ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+main > ul li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem 1rem;
+    margin-bottom: 0.75rem;
+    background: #ffffff;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 4px rgba(15, 23, 42, 0.08);
+    font-size: 0.95rem;
+}
+
+main > ul li img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+main > ul li strong {
+    margin-right: 0.35rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+/* Footer */
+footer {
+    margin-top: auto;
+    padding: 1.25rem 1.5rem;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #9ca3af; /* slate-400 */
+    background: #020617; /* slate-950 */
+    border-top: 1px solid #111827;
+}
+
+/* Make sure footer text doesn't hug screen edges on large screens */
+footer p {
+    margin: 0;
+}
+
+/* Basic responsive tweaks */
+@media (max-width: 640px) {
+    nav ul {
+        justify-content: center;
     }
-}       
+
+    main {
+        margin-top: 1.75rem;
+        padding-inline: 1rem;
+    }
+
+    main > ul li {
+        align-items: flex-start;
+    }
+
+    main > ul li img {
+        width: 32px;
+        height: 32px;
+        margin-top: 2px;
+    }
+}
