@@ -2,6 +2,7 @@ import express from 'express';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import { testConnection } from './src/models/db.js';
+import { getAllOrganizations } from './src/models/organizations.js';
 
 // Define the the application environment
 const NODE_ENV = process.env.NODE_ENV?.toLowerCase() || 'production';
@@ -30,14 +31,16 @@ app.set('views', path.join(__dirname, 'src/views'));
 /**
  * Routes
  */
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
     const title = 'Home';
     res.render('home', { title });
 });
 
 app.get('/partners', async (req, res) => {
+    const organizations = await getAllOrganizations();
     const title = 'Our Partners';
-    res.render('partners', { title });
+
+    res.render('partners', { title, organizations });
 });
 
 app.get('/projects', async (req, res) => {
