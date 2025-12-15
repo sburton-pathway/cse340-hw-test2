@@ -1,0 +1,27 @@
+{
+  "name": "cse340-hw-test2",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/sburton-pathway/cse340-hw-test2#readme",
+  "bugs": {
+    "url": "https://github.com/sburton-pathway/cse340-hw-test2/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sburton-pathway/cse340-hw-test2.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
