@@ -107,3 +107,86 @@ VALUES
  'Blood Donation Campaign',
  'Coordinating a community-wide blood donation event with local hospitals.',
  'Health Pavilion', '2025-10-05');
+
+
+ CREATE TABLE category (
+    category_id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE project_category (
+    project_id INTEGER NOT NULL REFERENCES project(project_id) ON DELETE CASCADE,
+    category_id INTEGER NOT NULL REFERENCES category(category_id) ON DELETE CASCADE,
+    PRIMARY KEY (project_id, category_id)
+);
+
+ INSERT INTO category (name) VALUES
+ ('Infrastructure'),
+ ('Accessibility'),
+ ('Environment'),
+ ('Education'),
+ ('Community Support'),
+ ('Health & Wellness')
+
+-- BrightFuture Builders Projects
+ INSERT INTO project_category (project_id, category_id) VALUES
+((SELECT project_id FROM project WHERE title = 'Community Playground Renovation'),
+ (SELECT category_id FROM category WHERE name = 'Infrastructure'));
+
+INSERT INTO project_category (project_id, category_id) VALUES
+((SELECT project_id FROM project WHERE title = 'Accessible Ramp Installation'),
+ (SELECT category_id FROM category WHERE name = 'Accessibility'));
+
+INSERT INTO project_category (project_id, category_id) VALUES
+((SELECT project_id FROM project WHERE title = 'Neighborhood Clean-Up Day'),
+ (SELECT category_id FROM category WHERE name = 'Environment'));
+
+INSERT INTO project_category (project_id, category_id) VALUES
+((SELECT project_id FROM project WHERE title = 'Community Tool Library Setup'),
+ (SELECT category_id FROM category WHERE name = 'Community Support'));
+
+INSERT INTO project_category (project_id, category_id) VALUES
+((SELECT project_id FROM project WHERE title = 'Solar Streetlight Installation'),
+ (SELECT category_id FROM category WHERE name = 'Infrastructure'));
+
+-- GreenHarvest Growers Projects
+INSERT INTO project_category (project_id, category_id) VALUES
+((SELECT project_id FROM project WHERE title = 'Urban Garden Expansion'),
+ (SELECT category_id FROM category WHERE name = 'Environment'));
+
+INSERT INTO project_category (project_id, category_id) VALUES
+((SELECT project_id FROM project WHERE title = 'Composting Workshop Series'),
+ (SELECT category_id FROM category WHERE name = 'Education'));
+
+INSERT INTO project_category (project_id, category_id) VALUES
+((SELECT project_id FROM project WHERE title = 'Farm-to-Table Youth Program'),
+ (SELECT category_id FROM category WHERE name = 'Education'));
+
+INSERT INTO project_category (project_id, category_id) VALUES
+((SELECT project_id FROM project WHERE title = 'Pollinator Habitat Project'),
+ (SELECT category_id FROM category WHERE name = 'Environment'));
+
+INSERT INTO project_category (project_id, category_id) VALUES
+((SELECT project_id FROM project WHERE title = 'Hydroponic Garden Setup'),
+ (SELECT category_id FROM category WHERE name = 'Environment'));
+
+-- UnityServe Volunteers Projects
+INSERT INTO project_category (project_id, category_id) VALUES
+((SELECT project_id FROM project WHERE title = 'Senior Companion Program'),
+ (SELECT category_id FROM category WHERE name = 'Community Support'));
+
+INSERT INTO project_category (project_id, category_id) VALUES
+((SELECT project_id FROM project WHERE title = 'School Supply Drive'),
+ (SELECT category_id FROM category WHERE name = 'Education'));
+
+INSERT INTO project_category (project_id, category_id) VALUES
+((SELECT project_id FROM project WHERE title = 'Holiday Meal Distribution'),
+ (SELECT category_id FROM category WHERE name = 'Community Support'));
+
+INSERT INTO project_category (project_id, category_id) VALUES
+((SELECT project_id FROM project WHERE title = 'Youth Mentorship Initiative'),
+ (SELECT category_id FROM category WHERE name = 'Education'));
+
+INSERT INTO project_category (project_id, category_id) VALUES
+((SELECT project_id FROM project WHERE title = 'Blood Donation Campaign'),
+ (SELECT category_id FROM category WHERE name = 'Health & Wellness'));
