@@ -18,7 +18,7 @@ const projectDetailsPage = async (req, res) => {
     const categories = await getCategoriesByServiceProjectId(id);
     const title = `${project.title} Details`;
 
-    res.render('projectDetails', { title, project, categories });
+    res.render('project', { title, project, categories });
 }
 
 // Export any controller functions
