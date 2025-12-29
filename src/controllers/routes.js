@@ -6,7 +6,7 @@ import { projectsPage } from './projects.js';
 import { projectDetailsPage } from './projects.js';
 import { categoriesPage } from './categories.js';
 import { testErrorPage } from './errors.js';
-import { organizationDetailsPage, newOrganizationPage, proecessNewOrganizationForm } from './organizations.js';
+import { organizationDetailsPage, newOrganizationPage, processNewOrganizationForm, organizationValidation } from './organizations.js';
 import { categoryDetailsPage } from './categories.js';
 
 const router = express.Router();
@@ -29,7 +29,7 @@ router.get('/category/:id', categoryDetailsPage);
 router.get('/new-organization', newOrganizationPage);
 
 // Route to handle new organization form submission
-router.post('/new-organization', proecessNewOrganizationForm);
+router.post('/new-organization', organizationValidation, processNewOrganizationForm);
 
 // error-handling routes
 router.get('/test-error', testErrorPage);
