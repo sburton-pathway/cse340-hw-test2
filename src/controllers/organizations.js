@@ -6,15 +6,23 @@ import { body, validationResult } from 'express-validator';
 // Define validation rules for organization form
 const organizationValidation = [
     body('name')
+        .trim()
+        .notEmpty()
+        .withMessage('Organization name is required')
         .isLength({ min: 3, max: 150 })
         .withMessage('Organization name must be between 3 and 150 characters'),
     body('description')
+        .trim()
+        .notEmpty()
+        .withMessage('Organization description is required')
         .isLength({ max: 500 })
         .withMessage('Organization description cannot exceed 500 characters'),
     body('contactEmail')
+        .normalizeEmail()
+        .notEmpty()
+        .withMessage('Contact email is required')
         .isEmail()
         .withMessage('Please provide a valid email address')
-        .normalizeEmail()
 ];
 
 // Define any controller functions
@@ -41,14 +49,17 @@ const newOrganizationPage = async (req, res) => {
 }
 
 const processNewOrganizationForm = async (req, res) => {
-    // // Check for validation errors
-    // const results = validationResult(req);
-    // if (!results.isEmpty()) {
-    //     // TODO: Save the validation errors to display on the form
+    // Check for validation errors
+    const results = validationResult(req);
+    if (!results.isEmpty()) {
+        // Validation failed - loop through errors
+        results.array().forEach((error) => {
+            req.flash('error', error.msg);
+        });
 
-    //     // Redirect back to the new organization form
-    //     return res.redirect('/new-organization');
-    // }
+        // Redirect back to the new organization form
+        return res.redirect('/new-organization');
+    }
 
     const { name, description, contactEmail } = req.body;
     const logoFilename = 'placeholder-logo.png'; // Use the placeholder logo for all new organizations    
