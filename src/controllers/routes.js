@@ -1,12 +1,10 @@
 import express from 'express';
 
 import { homePage } from './index.js';
-import { partnersPage } from './organizations.js';
-import { projectsPage } from './projects.js';
-import { projectDetailsPage } from './projects.js';
 import { categoriesPage } from './categories.js';
 import { testErrorPage } from './errors.js';
 import { 
+    partnersPage,
     organizationDetailsPage, 
     newOrganizationPage, 
     processNewOrganizationForm, 
@@ -14,6 +12,14 @@ import {
     showEditOrganizationPage, 
     processEditOrganizationForm 
 } from './organizations.js';
+
+import { 
+    projectsPage, 
+    projectDetailsPage, 
+    showNewProjectForm, 
+    processNewProjectForm 
+} from './projects.js';
+
 
 import { categoryDetailsPage } from './categories.js';
 
@@ -44,6 +50,12 @@ router.get('/edit-organization/:id', showEditOrganizationPage);
 
 // Route to handle the edit organization form submission
 router.post('/edit-organization/:id', organizationValidation, processEditOrganizationForm);
+
+// Route for new project page
+router.get('/new-project', showNewProjectForm);
+
+// Route to handle new project form submission
+router.post('/new-project', processNewProjectForm);
 
 // error-handling routes
 router.get('/test-error', testErrorPage);
