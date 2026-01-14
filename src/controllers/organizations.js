@@ -89,7 +89,7 @@ const processEditOrganizationForm = async (req, res) => {
             req.flash('error', error.msg);
         });
 
-        // Redirect back to the new organization form
+        // Redirect back to the edit organization form
         return res.redirect('/edit-organization/' + req.params.id);
     }
 
