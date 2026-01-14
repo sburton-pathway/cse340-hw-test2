@@ -126,7 +126,7 @@ CREATE TABLE project_category (
  ('Environment'),
  ('Education'),
  ('Community Support'),
- ('Health & Wellness')
+ ('Health & Wellness');
 
 -- BrightFuture Builders Projects
  INSERT INTO project_category (project_id, category_id) VALUES
