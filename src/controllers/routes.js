@@ -1,7 +1,16 @@
 import express from 'express';
 
 import { homePage } from './index.js';
-import { categoriesPage, showAssignCategoriesForm, processAssignCategoriesForm } from './categories.js';
+import { 
+    categoriesPage, 
+    showAssignCategoriesForm, 
+    processAssignCategoriesForm,
+    showNewCategoryForm,
+    processNewCategoryForm,
+    showEditCategoryForm,
+    processEditCategoryForm,
+    categoryValidation
+} from './categories.js';
 import { testErrorPage } from './errors.js';
 import { 
     partnersPage,
@@ -69,6 +78,12 @@ router.post('/edit-project/:id', projectValidation, processEditProjectForm);
 // Routes to handle the assign categories to project form
 router.get('/assign-categories/:projectId', showAssignCategoriesForm);
 router.post('/assign-categories/:projectId', processAssignCategoriesForm);
+
+// Routes to display and edit categories
+router.get('/new-category', showNewCategoryForm);
+router.post('/new-category', categoryValidation, processNewCategoryForm);
+router.get('/edit-category/:id', showEditCategoryForm);
+router.post('/edit-category/:id', categoryValidation, processEditCategoryForm);
 
 // error-handling routes
 router.get('/test-error', testErrorPage);
