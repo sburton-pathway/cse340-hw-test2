@@ -32,6 +32,10 @@ import {
     processEditProjectForm
 } from './projects.js';
 
+import {
+    showUserRegistrationForm,
+    processUserRegistrationForm
+} from './users.js';
 
 import { categoryDetailsPage } from './categories.js';
 
@@ -84,6 +88,10 @@ router.get('/new-category', showNewCategoryForm);
 router.post('/new-category', categoryValidation, processNewCategoryForm);
 router.get('/edit-category/:id', showEditCategoryForm);
 router.post('/edit-category/:id', categoryValidation, processEditCategoryForm);
+
+// User registration routes
+router.get('/register', showUserRegistrationForm);
+router.post('/register', processUserRegistrationForm);
 
 // error-handling routes
 router.get('/test-error', testErrorPage);
