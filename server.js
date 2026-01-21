@@ -5,12 +5,15 @@ import { testConnection } from './src/models/db.js';
 import router from './src/controllers/routes.js';
 import session from 'express-session';
 import flash from './src/middleware/flash.js';
+import connectPgSimple from 'connect-pg-simple';
 
 // Define the the application environment
 const NODE_ENV = process.env.NODE_ENV?.toLowerCase() || 'production';
 
 // Define the port number the server will listen on
 const PORT = process.env.PORT || 3000;
+
+const SESSION_SECRET = process.env.SESSION_SECRET;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -21,9 +24,21 @@ const app = express();
   * Configure Express middleware
   */
 
+
+// Initialize PostgreSQL session store
+const pgSession = connectPgSimple(session);
+
 // Set up session management
 app.use(session({
-    secret: 'your-secret-key',
+    store: new pgSession({
+        conObject: {
+            connectionString: process.env.DB_URL,
+            ssl: { rejectUnauthorized: false }
+        },
+        tableName: 'sessions',
+        createTableIfMissing: true
+    }),
+    secret: SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: { maxAge: 60 * 60 * 1000 } // Session expires after 1 hour of inactivity
