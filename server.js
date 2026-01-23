@@ -5,7 +5,6 @@ import { testConnection } from './src/models/db.js';
 import router from './src/controllers/routes.js';
 import session from 'express-session';
 import flash from './src/middleware/flash.js';
-import connectPgSimple from 'connect-pg-simple';
 
 // Define the the application environment
 const NODE_ENV = process.env.NODE_ENV?.toLowerCase() || 'production';
