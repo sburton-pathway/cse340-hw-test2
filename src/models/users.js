@@ -25,9 +25,10 @@ const createUser = async (email, passwordHash) => {
 
 const findUserByEmail = async (email) => {
     const query = `
-        SELECT user_id, email, password_hash, role_id 
-        FROM users 
-        WHERE email = $1
+        SELECT u.user_id, u.email, u.password_hash, r.role_name 
+        FROM users u
+        JOIN roles r ON u.role_id = r.role_id
+        WHERE u.email = $1
     `;
     const query_params = [email];
     
@@ -61,5 +62,23 @@ const authenticateUser = async (email, password) => {
     return user; // Authentication successful
 };
 
+// // Function to get user role by user ID
+// const getUserRole = async (userId) => {
+//     const query = `
+//         SELECT r.role_name 
+//         FROM roles r
+//         JOIN users u ON u.role_id = r.role_id
+//         WHERE u.user_id = $1
+//     `;
+//     const query_params = [userId];
+    
+//     const result = await db.query(query, query_params);
+
+//     if (result.rows.length === 0) {
+//         throw new Error('User role not found');
+//     }
+
+//     return result.rows[0].role_name;
+// };
 
 export { createUser, authenticateUser };
