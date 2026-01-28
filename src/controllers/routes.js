@@ -13,7 +13,7 @@ import {
 } from './categories.js';
 import { testErrorPage } from './errors.js';
 import { 
-    partnersPage,
+    organizationsPage,
     organizationDetailsPage, 
     newOrganizationPage, 
     processNewOrganizationForm, 
@@ -48,7 +48,7 @@ import { categoryDetailsPage } from './categories.js';
 const router = express.Router();
 
 router.get('/', homePage);
-router.get('/partners', partnersPage);
+router.get('/organizations', organizationsPage);
 router.get('/projects', projectsPage);
 router.get('/categories', categoriesPage);
 
@@ -86,8 +86,8 @@ router.get('/edit-project/:id', requireRole('admin'), showEditProjectForm);
 router.post('/edit-project/:id', requireRole('admin'), projectValidation, processEditProjectForm);
 
 // Routes to handle the assign categories to project form
-router.get('/assign-categories/:projectId', showAssignCategoriesForm);
-router.post('/assign-categories/:projectId', processAssignCategoriesForm);
+router.get('/assign-categories/:projectId', requireRole('admin'), showAssignCategoriesForm);
+router.post('/assign-categories/:projectId', requireRole('admin'), processAssignCategoriesForm);
 
 // Routes to display and edit categories
 router.get('/new-category', requireRole('admin'), showNewCategoryForm);

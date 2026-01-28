@@ -26,11 +26,11 @@ const organizationValidation = [
 ];
 
 // Define any controller functions
-const partnersPage = async (req, res) => {
+const organizationsPage = async (req, res) => {
     const organizations = await getAllOrganizations();
-    const title = 'Our Partners';
+    const title = 'Our Partner Organizations';
 
-    res.render('partners', { title, organizations });
+    res.render('organizations', { title, organizations });
 };
 
 const organizationDetailsPage = async (req, res) => {
@@ -106,7 +106,7 @@ const processEditOrganizationForm = async (req, res) => {
 
 // Export any controller functions
 export {
-    partnersPage,
+    organizationsPage,
     organizationDetailsPage,
     newOrganizationPage,
     processNewOrganizationForm,

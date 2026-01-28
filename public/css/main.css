@@ -77,7 +77,7 @@ p {
     color: #4b5563; /* slate-600 */
 }
 
-/* Partners list (the <ul> in main) */
+/* Organizations list (the <ul> in main) */
 main > ul {
     list-style: none;
     padding: 0;
